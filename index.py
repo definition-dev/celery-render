@@ -1,6 +1,5 @@
 import time
 from flask import jsonify, Flask, request
-from flasgger import Swagger
 import requests
 from slack_sdk.signature import SignatureVerifier
 import os
@@ -9,17 +8,6 @@ from celery import Celery
 REDIS_URL = os.environ.get("REDIS_URL")
 
 app = Flask(__name__)
-
-template = {
-    "swagger": "2.0",
-    "info": {
-        "title": "Slack App API",
-        "description": "API documentation for the Slack App",
-        "version": "0.1"
-    },
-}
-
-swagger = Swagger(app, template=template)
 
 SLACK_SIGNING_SECRET = os.environ.get("SLACK_SIGNING_SECRET")
 
